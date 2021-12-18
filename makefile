@@ -10,7 +10,7 @@ O = -o
 all: stringProg
 
 stringProg: ex3.o
-		$(CC) $(SHARED) -o stringProg ex3.o
+		$(CC) $(FLAGS) -o stringProg ex3.o
 
 # libStringProg.a: ex3.o
 # 		$(AR) $(RCS) libStringProg.a ex3.o
