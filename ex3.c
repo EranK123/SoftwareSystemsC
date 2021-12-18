@@ -1,46 +1,84 @@
 #include <stdio.h>
 #include <string.h>
+#include "ex3.h"
 #define TXT 1024
 #define WORD 30
 
 
-int gematria_word(char s[]);
-int gematria_text(char c);
-int gematria_compute(char c1, char c2);
-void SubString(char word[], char text[]);
-void atbash(char word[], char text[]);
-int gematria_anagram(char s[], char c);
-void anagram(char word[], char text[]);
-void remove_first(char arr[], int *size);
+// int gematria_word(char s[]);
+// int gematria_text(char c);
+// int gematria_compute(char c1, char c2);
+// void SubString(char word[], char text[]);
+// void atbash(char word[], char text[]);
+// int gematria_anagram(char s[], char c);
+// void anagram(char word[], char text[]);
 
      
-    int main(){
-    char word[WORD]; 
-    char text[TXT];
-    for(int i=0; i<WORD; i++){
-        scanf("%c", &word[i]);
-        if(word[i] == '\n' || word[i] == '\t' || word[i] == ' '){
-            word[i] = '\0';
-            break;
+//     int main(){
+//     char word[WORD]; 
+//     char text[TXT];
+//     for(int i=0; i<WORD; i++){
+//         scanf("%c", &word[i]);
+//         if(word[i] == '\n' || word[i] == '\t' || word[i] == ' '){
+//             word[i] = '\0';
+//             break;
+//         }
+//     }
+//     for(int i=0; i<TXT; i++){
+//         scanf("%c", &text[i]);
+//         if(text[i] == '~'){
+//             text[i] = '\0';
+//             break;
+//         }
+//     }
+//     SubString(word, text);
+//     printf("%c", '\n');
+//     atbash(word, text);
+//     printf("%c", '\n');
+//     anagram(word, text);
+//     printf("%c", '\n');
+//     return 0;
+// }
+// //******************************************//
+// //Q1
+int gematria_anagram(char s[], char c){
+    int len = strlen(s);
+    for (int i = 0; i < len; i++){
+        if (s[i] == c){
+            return i;
         }
     }
-    for(int i=0; i<TXT; i++){
-        scanf("%c", &text[i]);
-        if(text[i] == '~'){
-            text[i] = '\0';
-            break;
-        }
-    }
-    SubString(word, text);
-    printf("%c", '\n');
-    atbash(word, text);
-    printf("%c", '\n');
-    anagram(word, text);
-    printf("%c", '\n');
-    return 0;
+    return -1;
 }
-//******************************************//
-//Q1
+
+int gematria_compute(char c1, char c2){
+    int value_gematria = 0;
+        if (c1 >= 'a' && c1 <= 'z'){
+            c1 = c1 - 'a' + 1;
+        }
+        else if(c1 >= 'A' && c1 <= 'Z'){
+            c1 = c1 - 'A' + 1;
+        }else{
+            c1 = 0;
+        }
+        if (c2 == ' '){
+            return 0;
+        }
+        else if (c2 >= 'a' && c2 <= 'z'){
+            c2 = c2 - 'a' + 1;
+        }
+        else if(c2 >= 'A' && c2 <= 'Z'){
+            c2 = c2 - 'A' + 1;
+        }else{
+            c2 = 0;
+        }
+        value_gematria = c1 + c2;
+
+        if (value_gematria == 27){
+            return 1;
+        }
+        return -1;
+    }
 int gematria_word(char s[]){
     char c = '0';
     int value_gematria = 0;
@@ -259,34 +297,7 @@ void atbash(char word[], char text[]){
 // }
 
 
-int gematria_compute(char c1, char c2){
-    int value_gematria = 0;
-        if (c1 >= 'a' && c1 <= 'z'){
-            c1 = c1 - 'a' + 1;
-        }
-        else if(c1 >= 'A' && c1 <= 'Z'){
-            c1 = c1 - 'A' + 1;
-        }else{
-            c1 = 0;
-        }
-        if (c2 == ' '){
-            return 0;
-        }
-        else if (c2 >= 'a' && c2 <= 'z'){
-            c2 = c2 - 'a' + 1;
-        }
-        else if(c2 >= 'A' && c2 <= 'Z'){
-            c2 = c2 - 'A' + 1;
-        }else{
-            c2 = 0;
-        }
-        value_gematria = c1 + c2;
 
-        if (value_gematria == 27){
-            return 1;
-        }
-        return -1;
-    }
 
 //*****************************************************************//
 //Q3
@@ -344,14 +355,4 @@ void anagram(char word[], char text[]){
      for (int q = 0; q < strlen(final_print)-1; q++){
                  printf("%c", final_print[q]);
             }
-}
-
-int gematria_anagram(char s[], char c){
-    int len = strlen(s);
-    for (int i = 0; i < len; i++){
-        if (s[i] == c){
-            return i;
-        }
-    }
-    return -1;
 }
