@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "ex3.h"
-// #include "ex3.c"
 #define TXT 1024
 #define WORD 30
 
