@@ -28,4 +28,4 @@ ex3.o: ex3.c
 .PHONY: clean all
 
 clean:
-	rm -f *.o *.a *.so stringProg
+	rm -f *.o stringProg
