@@ -26,6 +26,5 @@ int main(){
     atbash(word, text);
     printf("%c", '\n');
     anagram(word, text);
-    printf("%c", '\n');
     return 0;
 }
